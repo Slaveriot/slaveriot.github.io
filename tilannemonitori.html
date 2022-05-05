@@ -1,0 +1,55 @@
+<html>
+<head><title>HSL TILANNENÄKYMÄ</title>
+<meta http-equiv=”refresh” content=”60">
+</head>
+<body style="background-color:black;">
+<table>
+<tr>
+<th>
+<img src="HSL-logo.png">
+</th>
+<th>
+HSL TILANNEHUONEEN NÄKYMÄPALVELU 
+</th>
+<th>
+<body onload="startTime()"><div id="txt" style="color:white; font-size:200%; align=right;"></div>
+<script>
+function startTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
+  setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+</script>
+</th>
+</tr>
+</table>
+
+<table border="0" width="100%" height="90%">
+<tbody>
+  <tr>
+    <td height=100% width="300" ><a class="twitter-timeline" data-lang="fi" data-width="300" data-height="100%" data-dnt="true" data-theme="dark" href="https://twitter.com/poikkeusinfo?ref_src=twsrc%5Etfw">Tweets by HSL_HRT</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  </td>
+    <td height=100% width="300" ><a class="twitter-timeline" data-lang="fi" data-width="300" data-height="100%" data-dnt="true" data-theme="dark" href="https://twitter.com/HSL_HRT?ref_src=twsrc%5Etfw">Tweets by HSL_HRT</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  </td>
+        <td height=50% width="300" ><script type="text/javascript" src="https://www.rssdog.com/index.php?url=https%3A%2F%2Fcontent.hsl.fi%2Fapi%2Fv1%2Frss%2Fnews-feed%2Ffi%3Ftake%3D100&amp;mode=javascript&amp;showonly=&amp;maxitems=8&amp;showdescs=0&amp;desctrim=0&amp;descmax=0&amp;tabwidth=300&amp;linktarget=_blank&amp;bordercol=%23rrggbb&amp;headbgcol=%23rrggbb&amp;headtxtcol=%23ffffff&amp;titlebgcol=%23rrggbb&amp;titletxtcol=%23ffffff&amp;itembgcol=%23000000&amp;itemtxtcol=%23ffffff&amp;ctl=0"></script></br>
+<script type="text/javascript" src="https://www.rssdog.com/index.php?url=http%3A%2F%2Fwww.tilannehuone.fi%2Frss.xml&amp;mode=javascript&amp;showonly=&amp;maxitems=10&amp;showdescs=0&amp;desctrim=0&amp;descmax=0&amp;tabwidth=300&amp;linktarget=_blank&amp;bordercol=%23d4d0c8&amp;headbgcol=%23999999&amp;headtxtcol=%23ffffff&amp;titlebgcol=%23f1eded&amp;titletxtcol=%23000000&amp;itembgcol=%23ffffff&amp;itemtxtcol=%23000000&amp;ctl=0">
+</script>
+</td>
+<td height=100% width="900" ><iframe src="http://forecabox.foreca.com/get/46645" width="900" height="90" marginwidth="0"
+marginheight="0" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+
+
+<iframe src='https://liikennetilanne.fintraffic.fi/kartta?lang=fi&x=2772491.142130998&y=8454004.784276882&z=11&checkedLayers=4,1,12,10&basemap=gray-vector&iframe=true' width="100%" height="90%"></iframe>
+</td>
+</tr>
+</tbody>
+</table>
+</html>
