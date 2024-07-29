@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kapa-laskuri</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        body {
+            font-family: Verdana;
+            display: flex;
+            justify-content: left;
+            align-items: left;
+            height: 100vh;
+            margin: 0;
+            background-color: #0058a2;
+            flex-direction: column;
+            position: relative;
+        }
+        #header {
+            font-family: 'Gotham', sans-serif;
+            font-size: 6em;
+            color: white;
+            background-color: #0058a2;
+            padding: 20px;
+            width: 100%;
+            text-align: left;
+        }
+        #countdown {
+            font-size: 7em;
+            color: white;
+            padding: 20px;
+        }
+        #logo {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">Linjan 13 liikenne alkaa 12.8 Kalasataman ja Pasilan välille <br> Lue lisää: hsl.fi/ratikka13</div>
+    <div id="countdown"></div>
+    <img id="logo" src="HSL_logo.png" alt="HSL Logo" width="400">
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date("August 14, 2024 05:10:00").getTime();
+            const now = new Date().getTime();
+            const timeDifference = targetDate - now;
+
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                days + "pv " + hours + "t " + minutes + "m " + seconds + "s ";
+
+            if (timeDifference < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "Liikenne alkanut!";
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown(); // initial call to display the countdown immediately
+    </script>
+</body>
+</html>
