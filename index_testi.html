@@ -3,32 +3,30 @@
 <head>
     <title>Index testi</title>
     <style>
-         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
         body {
             font-family: Montserrat;
-            display: flex;
             justify-content: center;
-	    align-items: left;
+	    align-items: center;
             height: 800px;
             margin: 10;
             background-color: #E43B12;
             flex-direction: column;
-            position: relative;
-        }
+           }
         #header {
             font-family: Montserrat';
-            font-size: 400px;
+            font-size: 100px;
             font-weight: bold;
             color: white;
             background-color: #E43B12;
-            padding: 20px;
+            padding: 10px;
             width: 100%;
             text-align: center;
         }
         #countdown {
-            font-size: 140px;
+            font-size: 80px;
             color: white;
-            padding: 80px;
+            padding: 30px;
 	    text-align: center;
         }
       </style>
@@ -39,7 +37,7 @@
   
     <script>
         function updateCountdown() {
-            const targetDate = new Date("September 2, 2024 05:10:00").getTime();
+            const targetDate = new Date("September 2, 2024 05:18:00").getTime();
             const now = new Date().getTime();
             const timeDifference = targetDate - now;
 
