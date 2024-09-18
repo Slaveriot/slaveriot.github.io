@@ -1,58 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Index testi</title>
-    <style>
-         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900');
-        body {
-            font-family: Montserrat;
-	    align-items: center;
-            height: 500px;
-            margin: 10px;
-            background-color: #E43B12;
-           }
-        #header {
-            font-family: Montserrat';
-            font-weight: bold;
-            color: white;
-            background-color: #E43B12;
-            padding: 10px;
-            width: 100%;
-            text-align: center;
-        }
-        #countdown {
-            font-size: 100px;
-            color: white;
-            padding: 30px;
-	    text-align: center;
-        }
-      </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Page with Iframes</title>
 </head>
 <body>
-    <div id="header"><font size="300px"><H1>Tervetuloa <BR> takaisin! <BR><BR> Rautatientorin <BR> asema <BR> aukeaa...</H1></font></div>
-    <div id="countdown"></div>
-     <script>
-        function updateCountdown() {
-            const targetDate = new Date("September 2, 2024 05:18:00").getTime();
-            const now = new Date().getTime();
-            const timeDifference = targetDate - now;
+    <!-- Lower Section iframe -->
+    <iframe src="https://slaveriot.github.io/tourdeinfo.png" width="1080" height="1920" frameborder="0"></iframe>
 
-            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").innerHTML =
-                days + " pv " + hours + "t " + minutes + "min " + seconds + "s ";
-
-            if (timeDifference < 0) {
-                clearInterval(countdownInterval);
-                document.getElementById("countdown").innerHTML = "Asema auennut!";
-            }
-        }
-
-        const countdownInterval = setInterval(updateCountdown, 1000);
-        updateCountdown(); // initial call to display the countdown immediately
-    </script>
 </body>
 </html>
