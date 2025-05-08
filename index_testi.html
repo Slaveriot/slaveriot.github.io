@@ -1,17 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Page with Iframes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Page with Iframes</title>
+  <style>
+    .container {
+      display: flex;
+    }
+    .left-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-right: 20px;
+    }
+    .pink-box {
+      width: 960px;
+      height: 200px;
+      background-color: pink;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Upper Section iframe -->
-    <iframe src="https://omatnaytot.hsl.fi/view?cont=Ad1aWF9GOQDzR0604DlIMw==" width="1080px" height="1310px" frameborder="0"></iframe>
+  <div class="container">
+    <div class="left-section">
+      <div class="pink-box">bussit jopa 3min välein</div>
+      <iframe src="https://omatnaytot.hsl.fi/view?cont=IF-Z1d-7tBFfHZY6EV91dA==" width="960px" height="1080px" frameborder="0" scrolling="no"></iframe>
+    </div>
 
-    <!-- Lower Section iframe -->
-    <iframe src="sovellus.gif" width="1080" height="610" frameborder="0" scrolling="no"></iframe>
+    <!-- right Section iframe -->
+    <iframe src="https://omatnaytot.hsl.fi/view?cont=uh6LCGb3WLvztXN-N2sqJA==" width="960px" height="1080px" frameborder="0" scrolling="no"></iframe>
+  </div>
 
 </body>
 </html>
