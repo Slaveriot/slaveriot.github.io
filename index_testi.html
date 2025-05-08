@@ -4,35 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HTML Page with Iframes</title>
-  <style>
-    .container {
-      display: flex;
-    }
-    .left-section {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin-right: 0px;
-    }
-    .pink-box {
-      width: 960px;
-      height: 200px;
-      background-color: #dc0451;
-      margin-bottom: 0px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 50px;
-      color: #333;
-    }
-  </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="left-section">
-      <div class="pink-box" style="color: white; font-family: 'Proxima Nova', 'Helvetica Neue', Arial, sans-serif; font-size: 48px;">
-  Bussit Vuosaareen ja Rastilaan jopa 2min välein </div>
+  <div class="container" style="display: flex;">
+    <div class="left-section" style="display: flex; flex-direction: column; align-items: flex-start; margin-right: 0px; border: 4px solid red;">
+      <div class="pink-box" style="width: 960px; height: 200px; background-color: #dc0451; margin-bottom: 0px; display: flex; align-items: center; justify-content: center; font-size: 48px; color: white; font-family: 'Proxima Nova', 'Helvetica Neue', Arial, sans-serif;">
+        Bussit Vuosaareen ja Rastilaan jopa 2min välein
+      </div>
       <iframe src="https://hsl.trapeze.fi/traveller/web?command=fullscreen&id=Joona&title=&cols=1&extracolumn=platform" width="960px" height="1080px" frameborder="0" scrolling="no"></iframe>
     </div>
 
