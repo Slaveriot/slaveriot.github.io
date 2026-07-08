@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSL</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#ffffff;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.container{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    height:100%;
+}
+
+/* Yläosa 4/6 */
+.header{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+}
+
+.logo{
+    width:70%;
+    max-width:700px;
+}
+
+.title{
+    font-size:clamp(2rem,5vw,5rem);
+    font-weight:bold;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+}
+
+/* Alaosa 2/6 */
+.footer{
+    flex:1;
+    border-top:2px solid #000;
+}
+
+.footer iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <img src="hsl.svg" alt="HSL-logo" class="logo">
+    </div>
+
+    <div class="footer">
+        <iframe
+            src="https://matkamonitori.digitransit.fi/view?cont=g95fKWNYQOiepmvLFHq+HQ=="
+            loading="lazy">
+        </iframe>
+    </div>
+
+</div>
+
+</body>
+</html>
