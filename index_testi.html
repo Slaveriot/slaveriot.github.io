@@ -2,83 +2,312 @@
 <html lang="fi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HSL</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+<title>HSL Kruunusillat Countdown</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html,body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#ffffff;
-    font-family:Arial, Helvetica, sans-serif;
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #003b6f;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
-.container{
-    display:flex;
-    flex-direction:column;
-    width:100%;
-    height:100%;
+/* KOKO INFONÄYTTÖ */
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
 }
 
-/* Yläosa 4/6 */
-.header{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:30px;
+/* VASEN COUNTDOWN */
+
+.left {
+    width: 64.02%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+    background: linear-gradient(
+        145deg,
+        #003b6f 0%,
+        #005b9f 55%,
+        #007ac9 100%
+    );
 }
 
-.logo{
-    width:70%;
-    max-width:700px;
+/* Hillitty taustakuvio */
+
+.left::before {
+    content: "";
+    position: absolute;
+    width: 850px;
+    height: 850px;
+    border-radius: 50%;
+    border: 90px solid rgba(255,255,255,0.035);
+    right: -300px;
+    top: -220px;
 }
 
-.title{
-    font-size:clamp(2rem,5vw,5rem);
-    font-weight:bold;
-    letter-spacing:.15em;
-    text-transform:uppercase;
+/* LASKURIN SISÄLTÖ */
+
+.content {
+    position: relative;
+    z-index: 2;
+    width: 92%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Alaosa 2/6 */
-.footer{
-    flex:1;
-    border-top:2px solid #000;
+/* OTSIKKO */
+
+#headline {
+    font-size: clamp(30px, 3.1vw, 58px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    margin-bottom: 65px;
+    text-shadow: 0 4px 15px rgba(0,0,0,.15);
 }
 
-.footer iframe{
-    width:100%;
-    height:100%;
-    border:none;
+/* PÄIVIEN LUKUMÄÄRÄ */
+
+.big-days {
+    font-size: clamp(130px, 17vw, 300px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -10px;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 12px 30px rgba(0,0,0,.20);
 }
+
+.days-label {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 12px;
+    margin-top: 20px;
+    margin-bottom: 70px;
+}
+
+/* TUNNIT MINUUTIT SEKUNNIT */
+
+.time-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+}
+
+.time-box {
+    min-width: 145px;
+    text-align: center;
+}
+
+.time-number {
+    font-size: 88px;
+    font-weight: 700;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+}
+
+.time-label {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-top: 12px;
+    opacity: .85;
+}
+
+.separator {
+    font-size: 75px;
+    font-weight: 300;
+    line-height: 1;
+    opacity: .7;
+}
+
+/* ALAREUNAN TEKSTI */
+
+.footer {
+    position: absolute;
+    bottom: 45px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    opacity: .85;
+}
+
+/* OIKEA GIF */
+
+.right {
+    width: 35.98%;
+    height: 100%;
+    overflow: hidden;
+    background: #003b6f;
+}
+
+.right iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
 </style>
-
 </head>
+
 <body>
 
 <div class="container">
 
-    <div class="header">
-        <img src="slaveriot.github.io/hsl.svg" alt="HSL-logo" class="logo">
+    <!-- VASEN: COUNTDOWN -->
+
+    <div class="left">
+
+        <div class="content">
+
+            <div id="headline">
+                Ratikkaliikenne alkaa
+            </div>
+
+            <div class="big-days">
+                <span id="days">0</span>
+            </div>
+
+            <div class="days-label">
+                PÄIVÄÄ
+            </div>
+
+            <div class="time-row">
+
+                <div class="time-box">
+                    <div class="time-number"
+                         id="hours">00</div>
+                    <div class="time-label">
+                        TUNTIA
+                    </div>
+                </div>
+
+                <div class="separator">:</div>
+
+                <div class="time-box">
+                    <div class="time-number"
+                         id="minutes">00</div>
+                    <div class="time-label">
+                        MINUUTTIA
+                    </div>
+                </div>
+
+                <div class="separator">:</div>
+
+                <div class="time-box">
+                    <div class="time-number"
+                         id="seconds">00</div>
+                    <div class="time-label">
+                        SEKUNTIA
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            Info: HSL.fi/kruunusillat
+        </div>
+
     </div>
 
-    <div class="footer">
+    <!-- OIKEA: GIF -->
+
+    <div class="right">
         <iframe
-            src="https://matkamonitori.digitransit.fi/view?cont=g95fKWNYQOiepmvLFHq+HQ=="
-            loading="lazy">
+            src="slaveriot.github.io/HSL_KRUUNUSILLAT.gif"
+            width="607"
+            height="1080"
+            scrolling="no"
+            title="HSL Kruunusillat">
         </iframe>
     </div>
 
 </div>
 
+<script>
+
+// KOLMIKIELINEN OTSIKKO
+
+const headlines = [
+    "Ratikkaliikenne alkaa",
+    "Spårtrafiken börjar",
+    "Tram service begins"
+];
+
+let currentHeadline = 0;
+
+setInterval(() => {
+    currentHeadline =
+        (currentHeadline + 1) % headlines.length;
+
+    document.getElementById("headline").textContent =
+        headlines[currentHeadline];
+
+}, 5000);
+
+
+// COUNTDOWN
+
+const targetDate =
+    new Date("2026-11-07T12:00:00+02:00");
+
+function updateCountdown() {
+
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+        document.getElementById("days").textContent = "0";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+        return;
+    }
+
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff / 3600000) % 24);
+    const minutes = Math.floor((diff / 60000) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("days").textContent = days;
+
+    document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+    document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+    document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+</script>
 </body>
 </html>
