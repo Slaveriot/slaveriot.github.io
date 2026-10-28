@@ -2,21 +2,18 @@
 <html lang="fi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>HSL Kruunusillat Countdown</title>
 
 <style>
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -24,22 +21,18 @@ body {
     font-family: "Segoe UI", Arial, sans-serif;
 }
 
-
-/* KOKO INFONÄYTTÖ */
-
+/* KOKO NÄYTTÖ */
 .container {
     width: 100%;
     height: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 64.02% 35.98%;
 }
 
-
-/* VASEN COUNTDOWN */
-
+/* VASEN PUOLI */
 .left {
-    width: 64.02%;
-    height: 100%;
-
+    min-width: 0;
+    min-height: 0;
     position: relative;
 
     display: flex;
@@ -47,7 +40,6 @@ body {
     justify-content: center;
 
     overflow: hidden;
-
     color: white;
 
     background: linear-gradient(
@@ -58,207 +50,172 @@ body {
     );
 }
 
-
-/* Hillitty taustakuvio */
-
+/* HILLITTY TAUSTAKUVIO */
 .left::before {
     content: "";
-
     position: absolute;
 
-    width: min(70vw, 80vh);
+    width: 70vmin;
     aspect-ratio: 1 / 1;
 
     border-radius: 50%;
+    border: 6vmin solid rgba(255,255,255,0.035);
 
-    border:
-        min(5vw, 8vh)
-        solid rgba(255,255,255,0.035);
-
-    right: -25%;
+    right: -22%;
     top: -20%;
 }
 
-
-/* LASKURIN SISÄLTÖ */
-
+/* SISÄLTÖ */
 .content {
     position: relative;
     z-index: 2;
 
-    width: 92%;
-    height: 90%;
-
-    text-align: center;
+    width: 90%;
+    height: 85%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
 
+    text-align: center;
+}
 
 /* OTSIKKO */
-
 #headline {
-    font-size: clamp(1.8rem, 3.1vw, 3.8rem);
-
+    font-size: clamp(1rem, 3vw, 4rem);
     font-weight: 700;
-
     line-height: 1.2;
-
     letter-spacing: -0.02em;
 
-    margin-bottom: 6vh;
+    margin-bottom: 5vh;
 
-    text-shadow:
-        0 0.4vh 1.4vh rgba(0,0,0,.15);
+    text-shadow: 0 0.4vh 1.4vh rgba(0,0,0,.15);
 }
 
-
-/* PÄIVIEN LUKUMÄÄRÄ */
-
+/* PÄIVÄT */
 .big-days {
-    font-size: clamp(8rem, 17vw, 19rem);
-
+    font-size: clamp(5rem, 15vw, 18rem);
     font-weight: 900;
-
-    line-height: 0.9;
+    line-height: .85;
 
     letter-spacing: -0.035em;
 
     font-variant-numeric: tabular-nums;
 
-    text-shadow:
-        0 1.1vh 2.8vh rgba(0,0,0,.20);
+    text-shadow: 0 1vh 3vh rgba(0,0,0,.20);
 }
-
 
 .days-label {
-    font-size: clamp(1.2rem, 1.8vw, 2.2rem);
-
+    font-size: clamp(1rem, 1.7vw, 2.3rem);
     font-weight: 700;
-
-    letter-spacing: 0.35em;
+    letter-spacing: .35em;
 
     margin-top: 2vh;
-    margin-bottom: 6.5vh;
+    margin-bottom: 6vh;
 }
 
-
-/* TUNNIT MINUUTIT SEKUNNIT */
-
+/* AIKA */
 .time-row {
-    width: 70%;
+    width: min(85%, 60vw);
 
-    display: flex;
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr);
 
-    align-items: flex-start;
-    justify-content: center;
-
+    align-items: start;
     gap: 1vw;
 }
 
-
 .time-box {
-    flex: 1 1 0;
-
     min-width: 0;
-
     text-align: center;
 }
 
-
 .time-number {
-    font-size: clamp(3.5rem, 4.6vw, 6rem);
-
+    font-size: clamp(2rem, 4.6vw, 6rem);
     font-weight: 700;
-
-    line-height: 1.1;
+    line-height: 1;
 
     font-variant-numeric: tabular-nums;
 }
 
-
 .time-label {
-    font-size: clamp(0.7rem, 0.85vw, 1.2rem);
-
+    font-size: clamp(.5rem, .85vw, 1.2rem);
     font-weight: 600;
 
-    letter-spacing: 0.12em;
+    letter-spacing: .12em;
 
-    margin-top: 1.1vh;
+    margin-top: 1.2vh;
 
     opacity: .85;
 }
 
-
 .separator {
-    font-size: clamp(3rem, 4vw, 5rem);
-
+    font-size: clamp(2rem, 4vw, 5rem);
     font-weight: 300;
-
-    line-height: 1;
+    line-height: .9;
 
     opacity: .7;
 }
 
-
-/* ALAREUNAN TEKSTI */
-
+/* INFO */
 .footer {
     position: absolute;
 
-    bottom: 4.2vh;
-    left: 0;
-
-    width: 100%;
+    bottom: 4vh;
+    left: 5%;
+    width: 90%;
 
     text-align: center;
 
-    font-size: clamp(0.9rem, 1.15vw, 1.5rem);
-
+    font-size: clamp(.7rem, 1.1vw, 1.5rem);
     font-weight: 700;
-
-    letter-spacing: 0.22em;
+    letter-spacing: .22em;
 
     opacity: .85;
 }
 
-
-/* OIKEA GIF */
-
+/* OIKEA PUOLI */
 .right {
-    width: 35.98%;
-    height: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    position: relative;
 
     overflow: hidden;
 
     background: #003b6f;
 }
 
+/* GIF täyttää oman 35,98 % alueensa */
+.right img {
+    position: absolute;
+    inset: 0;
 
-.right iframe {
     width: 100%;
     height: 100%;
 
-    border: 0;
-
     display: block;
+
+    object-fit: cover;
+    object-position: center;
 }
 
-
-/* SKAALAUS KAPEAMMILLE NÄYTÖILLE */
-
+/* VARMISTUS KAPEILLE NÄYTÖILLE */
 @media (max-aspect-ratio: 4/3) {
 
     #headline {
-        font-size: clamp(1.4rem, 3vw, 3rem);
+        font-size: clamp(1rem, 2.8vw, 3rem);
         margin-bottom: 4vh;
     }
 
     .big-days {
-        font-size: clamp(6rem, 16vw, 15rem);
+        font-size: clamp(4rem, 13vw, 13rem);
     }
 
     .days-label {
@@ -266,20 +223,15 @@ body {
     }
 
     .time-row {
-        width: 82%;
+        width: 90%;
     }
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div class="container">
-
-
-    <!-- VASEN: COUNTDOWN -->
 
     <div class="left">
 
@@ -289,79 +241,38 @@ body {
                 Ratikkaliikenne alkaa
             </div>
 
-
             <div class="big-days">
                 <span id="days">0</span>
             </div>
-
 
             <div class="days-label">
                 PÄIVÄÄ
             </div>
 
-
             <div class="time-row">
 
+                <div class="time-box">
+                    <div class="time-number" id="hours">00</div>
+                    <div class="time-label">TUNTIA</div>
+                </div>
+
+                <div class="separator">:</div>
 
                 <div class="time-box">
-
-                    <div
-                        class="time-number"
-                        id="hours">
-                        00
-                    </div>
-
-                    <div class="time-label">
-                        TUNTIA
-                    </div>
-
+                    <div class="time-number" id="minutes">00</div>
+                    <div class="time-label">MINUUTTIA</div>
                 </div>
 
-
-                <div class="separator">
-                    :
-                </div>
-
+                <div class="separator">:</div>
 
                 <div class="time-box">
-
-                    <div
-                        class="time-number"
-                        id="minutes">
-                        00
-                    </div>
-
-                    <div class="time-label">
-                        MINUUTTIA
-                    </div>
-
+                    <div class="time-number" id="seconds">00</div>
+                    <div class="time-label">SEKUNTIA</div>
                 </div>
-
-
-                <div class="separator">
-                    :
-                </div>
-
-
-                <div class="time-box">
-
-                    <div
-                        class="time-number"
-                        id="seconds">
-                        00
-                    </div>
-
-                    <div class="time-label">
-                        SEKUNTIA
-                    </div>
-
-                </div>
-
 
             </div>
 
         </div>
-
 
         <div class="footer">
             Info: HSL.fi/kruunusillat
@@ -369,22 +280,11 @@ body {
 
     </div>
 
-
-    <!-- OIKEA: GIF -->
-
     <div class="right">
-
-        <iframe
-            src="slaveriot.github.io/HSL_KRUUNUSILLAT.gif"
-            scrolling="no"
-            title="HSL Kruunusillat">
-        </iframe>
-
+        slaveriot.github.io/HSL_KRUUNUSILLAT.gif
     </div>
 
-
 </div>
-
 
 <script>
 
@@ -398,7 +298,6 @@ const headlines = [
 
 let currentHeadline = 0;
 
-
 setInterval(() => {
 
     currentHeadline =
@@ -410,86 +309,54 @@ setInterval(() => {
 }, 5000);
 
 
-
 /* COUNTDOWN */
 
 const targetDate =
     new Date("2026-11-07T12:00:00+02:00");
 
-
 function updateCountdown() {
 
     const now = new Date();
-
-    const diff =
-        targetDate - now;
-
+    const diff = targetDate - now;
 
     if (diff <= 0) {
 
-        document.getElementById("days").textContent =
-            "0";
-
-        document.getElementById("hours").textContent =
-            "00";
-
-        document.getElementById("minutes").textContent =
-            "00";
-
-        document.getElementById("seconds").textContent =
-            "00";
+        document.getElementById("days").textContent = "0";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
 
         return;
     }
 
-
     const days =
-        Math.floor(
-            diff / 86400000
-        );
-
+        Math.floor(diff / 86400000);
 
     const hours =
-        Math.floor(
-            (diff / 3600000) % 24
-        );
-
+        Math.floor((diff / 3600000) % 24);
 
     const minutes =
-        Math.floor(
-            (diff / 60000) % 60
-        );
-
+        Math.floor((diff / 60000) % 60);
 
     const seconds =
-        Math.floor(
-            (diff / 1000) % 60
-        );
-
+        Math.floor((diff / 1000) % 60);
 
     document.getElementById("days").textContent =
         days;
 
-
     document.getElementById("hours").textContent =
         String(hours).padStart(2, "0");
 
-
     document.getElementById("minutes").textContent =
         String(minutes).padStart(2, "0");
-
 
     document.getElementById("seconds").textContent =
         String(seconds).padStart(2, "0");
 }
 
-
 updateCountdown();
 
-setInterval(
-    updateCountdown,
-    1000
-);
+setInterval(updateCountdown, 1000);
 
 </script>
 
