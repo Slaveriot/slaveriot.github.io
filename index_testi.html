@@ -1,437 +1,145 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>HSL Kruunusillat Countdown</title>
-
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #003b6f;
-    font-family: "Segoe UI", Arial, sans-serif;
-}
-
-/* KOKO NÄYTTÖ */
-
-.container {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 64.02fr 35.98fr;
-}
-
-
-/* VASEN PUOLI */
-
-.left {
-    position: relative;
-    min-width: 0;
-    min-height: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-    color: #ffffff;
-
-    background:
-        linear-gradient(
-            145deg,
-            #003b6f 0%,
-            #005b9f 55%,
-            #007ac9 100%
-        );
-}
-
-
-/* TAUSTAKUVIO */
-
-.left::before {
-    content: "";
-    position: absolute;
-
-    width: 75vmin;
-    aspect-ratio: 1 / 1;
-
-    border-radius: 50%;
-    border: 5vmin solid rgba(255,255,255,0.035);
-
-    right: -20%;
-    top: -20%;
-
-    pointer-events: none;
-}
-
-
-/* COUNTDOWN-SISÄLTÖ */
-
-.content {
-    position: relative;
-    z-index: 2;
-
-    width: 90%;
-    height: 88%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-}
-
-
-/* OTSIKKO */
-
-#headline {
-font-size: clamp(24px, 3vw, 64px);
-font-weight: 700;
-line-height: 1.15;
-letter-spacing: -0.02em;
-
-margin-bottom: 5vh;
-
-text-shadow:
-    0 0.4vh 1.5vh rgba(0,0,0,0.15);
-}
-
-
-/* PÄIVÄT */
-
-.big-days {
-    font-size: clamp(6rem, 15vw, 19rem);
-    font-weight: 900;
-    line-height: 0.85;
-    letter-spacing: -0.035em;
-
-    font-variant-numeric: tabular-nums;
-
-    text-shadow:
-        0 1vh 3vh rgba(0,0,0,0.20);
-}
-
-.days-label {
-    font-size: clamp(1rem, 1.8vw, 2.4rem);
-    font-weight: 700;
-
-    letter-spacing: 0.35em;
-
-    margin-top: 2vh;
-    margin-bottom: 6vh;
-}
-
-
-/* TUNNIT / MINUUTIT / SEKUNNIT */
-
-.time-row {
-    width: 80%;
-
-    display: grid;
-
-    grid-template-columns:
-        minmax(0, 1fr)
-        auto
-        minmax(0, 1fr)
-        auto
-        minmax(0, 1fr);
-
-    align-items: start;
-
-    column-gap: 1vw;
-}
-
-.time-box {
-    min-width: 0;
-    text-align: center;
-}
-
-.time-number {
-    font-size: clamp(2.5rem, 4.5vw, 6rem);
-    font-weight: 700;
-    line-height: 1;
-
-    font-variant-numeric: tabular-nums;
-}
-
-.time-label {
-    font-size: clamp(0.6rem, 0.8vw, 1.2rem);
-    font-weight: 600;
-
-    letter-spacing: 0.12em;
-
-    margin-top: 1.2vh;
-
-    opacity: 0.85;
-}
-
-.separator {
-    font-size: clamp(2.5rem, 4vw, 5rem);
-    font-weight: 300;
-    line-height: 0.9;
-
-    opacity: 0.65;
-}
-
-
-/* ALAREUNAN INFO */
-
-.footer {
-    position: absolute;
-
-    z-index: 3;
-
-    left: 5%;
-    bottom: 4vh;
-
-    width: 90%;
-
-    text-align: center;
-
-    font-size: clamp(0.7rem, 1.1vw, 1.5rem);
-    font-weight: 700;
-
-    letter-spacing: 0.22em;
-
-    opacity: 0.85;
-}
-
-
-/* OIKEA GIF-ALUE */
-
-.right {
-    position: relative;
-
-    min-width: 0;
-    min-height: 0;
-
-    width: 100%;
-    height: 100%;
-
-    overflow: hidden;
-
-    background: #003b6f;
-}
-
-
-/* GIF */
-
-.right img {
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-    object-position: center center;
-}
-
-
-/* PIENEMMÄT / ERI KUVASUHTEEN NÄYTÖT */
-
-@media (max-aspect-ratio: 4/3) {
-
-    #headline {
-        font-size: clamp(1.2rem, 2.8vw, 3rem);
-        margin-bottom: 4vh;
-    }
-
-    .big-days {
-        font-size: clamp(5rem, 14vw, 14rem);
-    }
-
-    .days-label {
-        margin-bottom: 4vh;
-    }
-
-    .time-row {
-        width: 90%;
-    }
-
-    .time-number {
-        font-size: clamp(2rem, 4vw, 5rem);
-    }
-}
+<style type="text/css">
+html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #003b6f; }
+body, table { font-family: Arial, Helvetica, sans-serif; color: #ffffff; }
+#layout { width: 100%; height: 100%; table-layout: fixed; border-collapse: collapse; }
+#left { background: #005b9f; text-align: center; vertical-align: middle; overflow: hidden; }
+#right { background: #003b6f; padding: 0; vertical-align: middle; }
+#picture { position: relative; width: 100%; height: 100%; overflow: hidden; }
+#gif { display: block; border: 0; }
+#headline font, #days font { font-size: inherit; }
+#headline { font-size: 48px; font-weight: bold; line-height: 1.15; margin: 0 5% 40px; }
+#days { font-size: 240px; font-weight: bold; line-height: 1; }
+#daysLabel { font-size: 28px; font-weight: bold; letter-spacing: 6px; margin: 14px 0 48px; }
+#times { width: 80%; margin: 0 auto; table-layout: fixed; border-collapse: collapse; }
+.number { font-size: 72px; font-weight: bold; line-height: 1.1; }
+.label { font-size: 14px; letter-spacing: 2px; padding-top: 12px; }
+.separator { width: 8%; font-size: 64px; vertical-align: top; }
+#footer { font-size: 18px; font-weight: bold; letter-spacing: 3px; margin: 40px 5% 0; }
+#notice { font-size: 16px; }
 </style>
 </head>
+<body bgcolor="#003b6f" text="#ffffff">
+<!-- HTML-taulukko ja esitysattribuutit säilyttävät perusasettelun ilman CSS:ää. -->
+<table id="layout" width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+<tr>
+<td id="left" width="64.02%" align="center" valign="middle" bgcolor="#005b9f">
+ <div id="headline"><font color="#ffffff" size="6">Ratikkaliikenne alkaa</font></div>
+ <div id="days"><font color="#ffffff" size="7">0</font></div>
+ <div id="daysLabel"><font color="#ffffff">PÄIVÄÄ</font></div>
+ <table id="times" width="80%" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+ <tr align="center">
+  <td><div class="number" id="hours">00</div><div class="label">TUNTIA</div></td>
+  <td class="separator" width="8%">:</td>
+  <td><div class="number" id="minutes">00</div><div class="label">MINUUTTIA</div></td>
+  <td class="separator" width="8%">:</td>
+  <td><div class="number" id="seconds">00</div><div class="label">SEKUNTIA</div></td>
+ </tr>
+ </table>
+ <div id="footer"><font color="#ffffff">Info: HSL.fi/kruunusillat</font></div>
+ <noscript><p id="notice">Lähtölaskenta vaatii JavaScriptin. Ratikkaliikenne alkaa 7.11.2026 klo 10.00 Suomen aikaa.</p></noscript>
+</td>
+<td id="right" width="35.98%" align="center" valign="middle" bgcolor="#003b6f">
+ <div id="picture"><img id="gif" src="https://slaveriot.github.io/HSL_KRUUNUSILLAT.gif" width="95%" border="0" alt="HSL Kruunusillat"></div>
+</td>
+</tr>
+</table>
+<script type="text/javascript">
+/* ES3-tyylinen syntaksi: ei const/let-, nuolifunktio- tai padStart-riippuvuuksia. */
+(function () {
+    var targetTime = Date.UTC(2026, 10, 7, 8, 0, 0);
+    var image = document.getElementById('gif');
+    var sourceWidth = 0;
+    var sourceHeight = 0;
+    /* Älä pakota pikseliasettelua, jos selain ei käytä edes perus-CSS:ää. */
+    var hasCss = document.getElementById('picture').offsetWidth > 0 &&
+        document.getElementById('picture').offsetHeight > 0;
 
-<body>
-
-<div class="container">
-
-    <!-- VASEN COUNTDOWN -->
-
-    <div class="left">
-
-        <div class="content">
-
-            <div id="headline">
-                Ratikkaliikenne alkaa
-            </div>
-
-            <div class="big-days">
-                <span id="days">0</span>
-            </div>
-
-            <div class="days-label">
-                PÄIVÄÄ
-            </div>
-
-            <div class="time-row">
-
-                <div class="time-box">
-                    <div class="time-number" id="hours">
-                        00
-                    </div>
-                    <div class="time-label">
-                        TUNTIA
-                    </div>
-                </div>
-
-                <div class="separator">:</div>
-
-                <div class="time-box">
-                    <div class="time-number" id="minutes">
-                        00
-                    </div>
-                    <div class="time-label">
-                        MINUUTTIA
-                    </div>
-                </div>
-
-                <div class="separator">:</div>
-
-                <div class="time-box">
-                    <div class="time-number" id="seconds">
-                        00
-                    </div>
-                    <div class="time-label">
-                        SEKUNTIA
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="footer">
-            Info: HSL.fi/kruunusillat
-        </div>
-
-    </div>
-
-
-    <!-- OIKEA GIF -->
-
-    <div class="right">
-
-        <img
-            src="https://slaveriot.github.io/HSL_KRUUNUSILLAT.gif"
-            alt="HSL Kruunusillat">
-
-    </div>
-
-</div>
-
-
-<script>
-
-/* KOLMIKIELINEN OTSIKKO */
-
-const headlines = [
-    "Ratikkaliikenne "
-];
-
-let currentHeadline = 0;
-
-setInterval(() => {
-
-    currentHeadline =
-        (currentHeadline + 1) % headlines.length;
-
-    document.getElementById("headline").textContent =
-        headlines[currentHeadline];
-
-}, 5000);
-
-
-/* COUNTDOWN */
-
-const targetDate =
-    new Date("2026-11-07T10:00:00+02:00");
-
-
-function updateCountdown() {
-
-    const now = new Date();
-    const diff = targetDate - now;
-
-    if (diff <= 0) {
-
-        document.getElementById("days").textContent =
-            "0";
-
-        document.getElementById("hours").textContent =
-            "00";
-
-        document.getElementById("minutes").textContent =
-            "00";
-
-        document.getElementById("seconds").textContent =
-            "00";
-
-        return;
+    function setText(id, value) {
+        var element = document.getElementById(id);
+        while (element.firstChild) { element.removeChild(element.firstChild); }
+        element.appendChild(document.createTextNode(String(value)));
     }
-
-
-    const days =
-        Math.floor(diff / 86400000);
-
-    const hours =
-        Math.floor((diff / 3600000) % 24);
-
-    const minutes =
-        Math.floor((diff / 60000) % 60);
-
-    const seconds =
-        Math.floor((diff / 1000) % 60);
-
-
-    document.getElementById("days").textContent =
-        days;
-
-    document.getElementById("hours").textContent =
-        String(hours).padStart(2, "0");
-
-    document.getElementById("minutes").textContent =
-        String(minutes).padStart(2, "0");
-
-    document.getElementById("seconds").textContent =
-        String(seconds).padStart(2, "0");
-}
-
-
-updateCountdown();
-
-setInterval(updateCountdown, 1000);
-
+    function twoDigits(value) { return value < 10 ? '0' + value : String(value); }
+    function updateCountdown() {
+        var diff = Math.max(0, targetTime - new Date().getTime());
+        setText('days', Math.floor(diff / 86400000));
+        setText('hours', twoDigits(Math.floor(diff / 3600000) % 24));
+        setText('minutes', twoDigits(Math.floor(diff / 60000) % 60));
+        setText('seconds', twoDigits(Math.floor(diff / 1000) % 60));
+    }
+    function font(id, size) {
+        document.getElementById(id).style.fontSize = Math.round(size) + 'px';
+    }
+    function limit(value, minimum, maximum) {
+        return Math.max(minimum, Math.min(maximum, value));
+    }
+    function resize() {
+        if (!hasCss) { return; }
+        var root = document.documentElement;
+        var w = window.innerWidth || root.clientWidth || document.body.clientWidth || 1024;
+        var h = window.innerHeight || root.clientHeight || document.body.clientHeight || 768;
+        var scale = Math.min(1, h / 800);
+        var compact = w / h <= 4 / 3;
+        var numbers = ['hours', 'minutes', 'seconds'];
+        var labels = document.getElementById('times').getElementsByTagName('div');
+        var i;
+        document.getElementById('layout').style.height = h + 'px';
+        document.getElementById('picture').style.height = h + 'px';
+        font('headline', limit(w * (compact ? 0.028 : 0.03), 24, 64) * scale);
+        font('days', limit(w * (compact ? 0.14 : 0.15), 80, 304) * scale);
+        font('daysLabel', limit(w * 0.018, 16, 38) * scale);
+        font('footer', limit(w * 0.011, 11, 24) * scale);
+        for (i = 0; i < numbers.length; i++) {
+            font(numbers[i], limit(w * (compact ? 0.04 : 0.045), 32, 96) * scale);
+        }
+        for (i = 0; i < labels.length; i++) {
+            if (labels[i].className === 'label') {
+                labels[i].style.fontSize = Math.round(limit(w * 0.008, 10, 19) * scale) + 'px';
+            }
+        }
+        document.getElementById('headline').style.marginBottom = Math.round(h * 0.05) + 'px';
+        document.getElementById('daysLabel').style.marginTop = Math.round(h * 0.02) + 'px';
+        document.getElementById('daysLabel').style.marginBottom = Math.round(h * 0.06) + 'px';
+        document.getElementById('footer').style.marginTop = Math.round(h * 0.05) + 'px';
+        if (sourceWidth && sourceHeight) {
+            var boxWidth = document.getElementById('picture').clientWidth;
+            /* Vastaa cover-sovitusta, jonka jälkeen kumpikin mitta on 95 %. */
+            var factor = Math.max(boxWidth / sourceWidth, h / sourceHeight) * 0.95;
+            var iw = Math.round(sourceWidth * factor);
+            var ih = Math.round(sourceHeight * factor);
+            image.style.position = 'absolute';
+            image.style.width = iw + 'px';
+            image.style.height = ih + 'px';
+            image.style.left = Math.round((boxWidth - iw) / 2) + 'px';
+            image.style.top = Math.round((h - ih) / 2) + 'px';
+        }
+    }
+    var probe = new Image();
+    probe.onload = function () {
+        sourceWidth = probe.width;
+        sourceHeight = probe.height;
+        resize();
+    };
+    probe.src = image.src;
+    window.onresize = resize;
+    /* Perus-CSS:n tunnistus ilman getComputedStyle-riippuvuutta. */
+    var picture = document.getElementById('picture');
+    picture.style.position = 'relative';
+    if (picture.currentStyle) {
+        hasCss = picture.currentStyle.position === 'relative';
+    } else if (window.getComputedStyle) {
+        hasCss = window.getComputedStyle(picture, null).position === 'relative';
+    }
+    updateCountdown();
+    resize();
+    window.setInterval(updateCountdown, 1000);
+}());
 </script>
-
 </body>
 </html>
